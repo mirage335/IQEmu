@@ -8,10 +8,25 @@
 scriptLocation="$(getScriptAbsoluteFolder)"
 
 InstanceDirUUID=$1
+shift
 
 InstanceDir=/tmp/IQemu/$InstanceDirUUID
 
-#Launch clone VM with hostToGuest.iso image.
-"$scriptLocation"/VM/startTempVBoxVM_withISO.sh "$InstanceDir"/hostToGuest/hostToGuest.iso
+if (($#))
+then
+	if [[ ! -d "$1" ]]
+	then
+		absoluteAppFileParam=$(getAbsoluteLocation "$1")
+		appFolder=$(dirname "$absoluteAppFileParam")
+	else
+		appFolder=$(getAbsoluteLocation "$1")
+	fi
+	shift
+else
+	appFolder="/"
+fi
+
+#Launch clone VM with hostToGuest.iso image and app shared folder.
+"$scriptLocation"/VM/startTempVBoxVM_withISO_andSharedFolder.sh "$InstanceDir"/hostToGuest/hostToGuest.iso "$appFolder"
 
 # Set window title. - Probably infeasible, may have to compromise.

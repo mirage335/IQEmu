@@ -11,5 +11,5 @@ InstanceDirUUID=$(getUUID)
 "$scriptLocation"/commInit.sh $InstanceDirUUID
 "$scriptLocation"/wrapper.sh $InstanceDirUUID "$@"
 "$scriptLocation"/createISO.sh $InstanceDirUUID
-"$scriptLocation"/execVM.sh $InstanceDirUUID
+"$scriptLocation"/execVM.sh $InstanceDirUUID "$@"
 "$scriptLocation"/commNULL.sh $InstanceDirUUID
