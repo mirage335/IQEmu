@@ -1,4 +1,6 @@
 #!/bin/bash
+#modified version of win-nix_param_converter.sh
+#adds 'root' as in 'Z:\root\xyz' instead of 'Z:\xyz'
 #Old, crude script for converting unix /home/xyz/abc file parameters to Z:\home\xyz\abc style parameters windows can understand.
 
 # Copyright (c) 2012 mirage335
@@ -73,7 +75,7 @@ if [[ -e $param || -e ${param/#file:\/\/} ]]
 fileparam=${param/#file:\/\/}
 
 #Translate location
-fileparam=Z:\\${fileparam/\/}
+fileparam=Z:\\root\\${fileparam/\/}
 
 #Translate slashes
 fileparam=${fileparam//\//\\}

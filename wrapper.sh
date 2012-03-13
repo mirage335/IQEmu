@@ -16,7 +16,7 @@ preCommand=$(cat "$scriptLocation"/preCommand)
 echo -n "start $preCommand" > "$InstanceDir"/hostToGuest/files/application.bat
 while (($#))
 do
-	echo -n \"$("$scriptLocation/win-nix_param_converter.sh" "$1")\" >> "$InstanceDir"/hostToGuest/files/application.bat
+	echo -n \"$("$scriptLocation/VMWareParamConverter.sh" "$1")\" >> "$InstanceDir"/hostToGuest/files/application.bat
 shift
 if (($#))
 then
