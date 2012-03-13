@@ -1,0 +1,27 @@
+Requirements:
+-) ubiquitous_bash.sh
+
+Special Abilities:
+-) Other virtualization platforms like QEMU, VirtualBox, and VMWare are possible. The fundamental requirements on the virtualization platform are expendable space-efficient clones (eg. QEMU's '-snapshot' feature), and commandline ISO image attachment.
+-) Advanced features like Unity mode, drag and drop, and record/replay are supported, if supported by the virtualization platform.
+
+Special Constructions:
+-) The Y:\shell.bat batch file must be called on startup.
+-) Theoretically, VM state saving may be used to skip the boot process.
+-) When multiple instances and instant-off safety are desired, the VM disk image must be opened in a snapshot mode. With VMWare, this may be accomplished using temporary clones.
+-) The NetBIOS protocal may need to be disabled to prevent duplicate network name errors.
+
+Workarounds:
+-) Environment variable SEE_MASK_NOZONECHECKS set to 1 combined with adding host IP to trusted sites and lowering all security settings seems to have eliminated XP SP2 new program execution warning.
+-) For some reason, it seems to be necessary to have mounted the Z: drive to a samba share at least once before launching the VM under snapshots and expecting it to work. A possible workaround is placing the 'net use' command in loader.bat.
+
+ChangeMe's:
+-) The loader.bat file will need to reflect a valid SAMBA account and root share for the host machine. Unless of course, the virtualization software provides its own filesystem integration.
+-) The preCommand text file will need to reflect the basic command Windows should execute (eg. notepad.exe ). Command should be preceeded by desired start flags (eg. /MAX) followed by a single space.
+-) The execVM.sh file may need to be edited to reflect USB devices, or other low-level changes to the virtualization environment.
+-) The execVM.sh file may also require editing if any changes to the virtualization platform are required.
+
+Warnings:
+-) Beware VirtualBox is not the best written program. Bad things are always possible, make backups.
+-) The dreaded "rm -rf" command is used in a few places. Exercise caution, especially when modifying scripts.
+-) Temporary clones may consume considerable disk space in /tmp/IQemu or /tmp/tempVBox. Ensure adequate space is available, and clean the folder after bad crashes.
