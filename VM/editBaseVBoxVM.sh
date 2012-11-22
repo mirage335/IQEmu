@@ -21,7 +21,7 @@ export VBOX_USER_HOME="$(getScriptAbsoluteFolder)"/base_vBox_HOME
 
 #Create temporary VM around persistent disk image.
 VBoxManage createvm --name "tempVBoxBase" --ostype Windows2003 --register --basefolder "$(getScriptAbsoluteFolder)"/Base
-VBoxManage modifyvm "tempVBoxBase" --vram 128 --memory 512 --nic1 nat --nictype1 "82543GC" --vrde off --ioapic on --acpi on --pae on --chipset ich9 --audio null --usb on --cpus 4 --accelerate3d off --accelerate2dvideo off
+VBoxManage modifyvm "tempVBoxBase" --vram 128 --memory 512 --nic1 nat --nictype1 "82543GC" --vrde off --ioapic on --acpi on --pae on --chipset ich9 --audio null --usb on --cpus 4 --accelerate3d off --accelerate2dvideo off --clipboard bidirectional
 VBoxManage sharedfolder add "tempVBoxBase" --name "root" --hostpath "/"
 VBoxManage storagectl "tempVBoxBase" --name "IDE Controller" --add ide --controller PIIX4
 VBoxManage storageattach "tempVBoxBase" --storagectl "IDE Controller" --port 0 --device 0 --type hdd --medium "$(getScriptAbsoluteFolder)"/virtualHardDisk.vdi --mtype normal

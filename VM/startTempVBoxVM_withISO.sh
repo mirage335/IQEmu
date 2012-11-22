@@ -18,7 +18,7 @@ export VBOX_USER_HOME="$VM_Folder"/temp_vBox_HOME
 mkdir -p "$VM_Folder"
 
 VBoxManage createvm --name "$VM_Name" --ostype Windows2003 --register --basefolder "$VM_Folder"
-VBoxManage modifyvm "$VM_Name" --boot1 disk --biosbootmenu disabled --bioslogofadein off --bioslogofadeout off --bioslogodisplaytime 5 --vram 128 --memory 512 --nic1 nat --nictype1 "82543GC" --vrde off --ioapic on --acpi on --pae on --chipset ich9 --audio null --usb on --cpus 4 --accelerate3d off --accelerate2dvideo off
+VBoxManage modifyvm "$VM_Name" --boot1 disk --biosbootmenu disabled --bioslogofadein off --bioslogofadeout off --bioslogodisplaytime 5 --vram 128 --memory 512 --nic1 nat --nictype1 "82543GC" --vrde off --ioapic on --acpi on --pae on --chipset ich9 --audio null --usb on --cpus 4 --accelerate3d off --accelerate2dvideo off --clipboard bidirectional
 VBoxManage sharedfolder add "$VM_Name" --name "root" --hostpath "/"
 VBoxManage storagectl "$VM_Name" --name "IDE Controller" --add ide --controller PIIX4
 VBoxManage storageattach "$VM_Name" --storagectl "IDE Controller" --port 0 --device 0 --type hdd --medium "$scriptFolder"/virtualHardDisk.vdi --mtype multiattach
